@@ -1,0 +1,3 @@
+anthropic          # Claude API SDK
+pyyaml             # Config file parsing
+python-dotenv      # Environment variable loading
