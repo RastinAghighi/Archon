@@ -1,0 +1,342 @@
+{
+  "learner": {
+    "name": "Learner",
+    "background": "Second-year Computer Science student starting AI/ML from scratch",
+    "level": "beginner",
+    "target": "Big tech co-op by August 2026",
+    "started": "2026-03-23"
+  },
+  "episodes_completed": 0,
+  "knowledge_graph": [
+    {
+      "id": "vectors_and_spaces",
+      "name": "Vectors and Spaces",
+      "confidence": 0.0,
+      "prerequisites": [],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [1],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "dot_products_projections",
+      "name": "Dot Products and Projections",
+      "confidence": 0.0,
+      "prerequisites": ["vectors_and_spaces"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [2],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "matrices_multiplication",
+      "name": "Matrices and Multiplication",
+      "confidence": 0.0,
+      "prerequisites": ["vectors_and_spaces"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [3],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "matrix_properties",
+      "name": "Matrix Properties",
+      "confidence": 0.0,
+      "prerequisites": ["matrices_multiplication"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [4],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "eigenvalues_eigenvectors",
+      "name": "Eigenvalues and Eigenvectors",
+      "confidence": 0.0,
+      "prerequisites": ["matrix_properties"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [5],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "svd",
+      "name": "Singular Value Decomposition",
+      "confidence": 0.0,
+      "prerequisites": ["eigenvalues_eigenvectors"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [6],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "norms_distances",
+      "name": "Norms and Distances",
+      "confidence": 0.0,
+      "prerequisites": ["vectors_and_spaces"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [7],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "matrix_calculus",
+      "name": "Matrix Calculus",
+      "confidence": 0.0,
+      "prerequisites": ["matrices_multiplication"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [8],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "data_as_matrices",
+      "name": "Data as Matrices",
+      "confidence": 0.0,
+      "prerequisites": ["matrices_multiplication", "norms_distances"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [9],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "recommender_capstone",
+      "name": "Recommender Capstone",
+      "confidence": 0.0,
+      "prerequisites": ["svd", "data_as_matrices"],
+      "category": "linear_algebra",
+      "phase": 1,
+      "episodes": [10],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "derivatives",
+      "name": "Derivatives",
+      "confidence": 0.0,
+      "prerequisites": [],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [11],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "partial_derivatives",
+      "name": "Partial Derivatives",
+      "confidence": 0.0,
+      "prerequisites": ["derivatives"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [12],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "chain_rule",
+      "name": "Chain Rule",
+      "confidence": 0.0,
+      "prerequisites": ["partial_derivatives"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [13],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "optimization",
+      "name": "Optimization",
+      "confidence": 0.0,
+      "prerequisites": ["partial_derivatives"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [14],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "gradient_descent",
+      "name": "Gradient Descent",
+      "confidence": 0.0,
+      "prerequisites": ["optimization", "chain_rule"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [15],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "sgd_minibatch",
+      "name": "SGD and Mini-Batch",
+      "confidence": 0.0,
+      "prerequisites": ["gradient_descent"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [16],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "advanced_optimizers",
+      "name": "Advanced Optimizers",
+      "confidence": 0.0,
+      "prerequisites": ["sgd_minibatch"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [17],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "calculus_capstone",
+      "name": "Calculus Capstone",
+      "confidence": 0.0,
+      "prerequisites": ["advanced_optimizers"],
+      "category": "calculus",
+      "phase": 1,
+      "episodes": [18],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "probability_basics",
+      "name": "Probability Basics",
+      "confidence": 0.0,
+      "prerequisites": [],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [19],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "bayes_theorem",
+      "name": "Bayes' Theorem",
+      "confidence": 0.0,
+      "prerequisites": ["probability_basics"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [20],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "random_variables",
+      "name": "Random Variables",
+      "confidence": 0.0,
+      "prerequisites": ["probability_basics"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [21],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "gaussian_distribution",
+      "name": "Gaussian Distribution",
+      "confidence": 0.0,
+      "prerequisites": ["random_variables"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [22],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "expectation_variance",
+      "name": "Expectation and Variance",
+      "confidence": 0.0,
+      "prerequisites": ["random_variables"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [23],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "mle",
+      "name": "Maximum Likelihood Estimation",
+      "confidence": 0.0,
+      "prerequisites": ["gaussian_distribution", "expectation_variance"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [24],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "information_theory",
+      "name": "Information Theory",
+      "confidence": 0.0,
+      "prerequisites": ["probability_basics"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [25],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "monte_carlo",
+      "name": "Monte Carlo Methods",
+      "confidence": 0.0,
+      "prerequisites": ["expectation_variance"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [26],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "hypothesis_testing",
+      "name": "Hypothesis Testing",
+      "confidence": 0.0,
+      "prerequisites": ["gaussian_distribution"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [27],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "naive_bayes_capstone",
+      "name": "Naive Bayes Capstone",
+      "confidence": 0.0,
+      "prerequisites": ["bayes_theorem", "mle", "information_theory"],
+      "category": "probability",
+      "phase": 1,
+      "episodes": [28],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "math_connects_to_ml",
+      "name": "Math Connects to ML",
+      "confidence": 0.0,
+      "prerequisites": ["recommender_capstone", "calculus_capstone", "naive_bayes_capstone"],
+      "category": "math_integration",
+      "phase": 1,
+      "episodes": [29],
+      "has_code": true,
+      "has_math": true
+    },
+    {
+      "id": "math_review",
+      "name": "Math Review",
+      "confidence": 0.0,
+      "prerequisites": ["math_connects_to_ml"],
+      "category": "math_integration",
+      "phase": 1,
+      "episodes": [30],
+      "has_code": true,
+      "has_math": true
+    }
+  ]
+}

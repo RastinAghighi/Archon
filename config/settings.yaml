@@ -1,0 +1,28 @@
+api:
+  anthropic_api_key: ${ANTHROPIC_API_KEY}    # Read from environment variable
+
+models:
+  document_writer: "claude-opus-4-20250514"
+  curriculum_planner: "claude-haiku-4-5-20251001"
+  source_ranker: "claude-sonnet-4-20250514"
+  show_notes: "claude-sonnet-4-20250514"
+  assessment_generator: "claude-haiku-4-5-20251001"
+
+document_writer:
+  max_tokens: 8192
+  extended_thinking: true
+  thinking_budget: 10000
+  target_words: 6000
+  target_pages: 15
+
+episode:
+  default_study_time_minutes: 60
+
+output:
+  pdfs_dir: "output/pdfs"
+  markdown_dir: "output/markdown"
+  assessments_dir: "output/assessments"
+  show_notes_dir: "output/show_notes"
+
+database:
+  path: "data/archon.db"
