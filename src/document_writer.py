@@ -84,6 +84,10 @@ def generate_document(topic_name, depth, subtopics, source_material, profile_sum
         profile_summary, yesterday_topic, tomorrow_topic,
     )
 
+    print(f"User prompt length: {len(user_prompt)} chars / {len(user_prompt.split())} words")
+    print(f"System prompt length: {len(SYSTEM_PROMPT)} chars")
+    print(f"API params: model={model}, max_tokens={max_tokens}, thinking={extended_thinking}, thinking_budget={thinking_budget}")
+
     result = call_claude(
         model=model,
         system_prompt=SYSTEM_PROMPT,
@@ -95,22 +99,61 @@ def generate_document(topic_name, depth, subtopics, source_material, profile_sum
 
     if result:
         word_count = len(result.split())
-        print(f"Document generated: {word_count} words")
+        print(f"Response length: {len(result)} chars / {word_count} words")
 
     return result
 
 
 if __name__ == "__main__":
+    source = """This is Episode 1 of the linear algebra foundations series. Cover vectors from absolute first principles,
+assuming the learner has no formal linear algebra background beyond high school math.
+
+KEY CONCEPTS TO COVER IN DEPTH:
+1. SCALARS vs VECTORS: Define scalars as single real numbers. Define vectors as ordered lists of numbers.
+   Explain notation: bold v for vectors, italic for scalars. Show column vector notation.
+2. GEOMETRIC INTERPRETATION: Vectors as arrows in 2D and 3D space. Magnitude (length) and direction.
+   The position vector vs. free vector distinction. Draw 2D coordinate systems with example vectors.
+3. VECTOR ADDITION: Parallelogram rule, head-to-tail method. Algebraic definition component-wise.
+   Show geometric diagrams for addition. Prove commutativity of vector addition geometrically.
+4. SCALAR MULTIPLICATION: Scaling a vector changes its magnitude. Negative scalars reverse direction.
+   Show geometric effect. Define algebraic rule: c*[v1, v2] = [c*v1, c*v2].
+5. LINEAR INDEPENDENCE: A set of vectors is linearly independent if no vector can be written as a
+   linear combination of the others. Give 2D and 3D examples. Show what linear dependence looks like
+   geometrically (collinear vectors in 2D).
+6. BASIS VECTORS: Standard basis e1, e2, e3. Any vector in R^n can be written as a linear combination
+   of basis vectors. Explain span. Non-standard bases exist — any set of n linearly independent
+   vectors in R^n forms a basis.
+7. SPAN: The span of a set of vectors is all possible linear combinations. Span of one non-zero vector
+   is a line. Span of two independent vectors in R^3 is a plane.
+8. VECTOR SPACES: Define the 8 axioms (closure under addition, closure under scalar multiplication,
+   associativity, commutativity, additive identity, additive inverse, multiplicative identity,
+   distributivity). Give R^2 and R^3 as concrete examples. Mention that polynomials and functions
+   can also form vector spaces.
+9. SUBSPACES: A subset of a vector space that is itself a vector space. The zero vector test, closure
+   under addition and scalar multiplication. Lines and planes through the origin are subspaces of R^3.
+10. NUMPY OPERATIONS: np.array creation, vector addition with +, scalar multiplication with *,
+    np.linalg.norm for magnitude, np.dot for dot product preview, stacking vectors, reshaping.
+    Include complete runnable code examples with output comments.
+
+WORKED EXAMPLES TO INCLUDE:
+- Given vectors u=[1,2] and v=[3,-1], compute u+v, 2u, u-v, and show geometrically
+- Show that {[1,0], [0,1]} is linearly independent but {[1,2], [2,4]} is not
+- Verify that R^2 satisfies the vector space axioms with a specific example
+- Complete NumPy session creating vectors, performing operations, computing norms
+
+Include at least 3 DIAGRAM directives for visual elements (vector addition diagram, basis vectors diagram, etc.)."""
+
     markdown = generate_document(
         topic_name="Scalars, Vectors, and Vector Spaces",
         depth="intro",
         subtopics=[
-            "What vectors really represent",
+            "What vectors really represent geometrically",
             "Vector addition and scalar multiplication",
             "Basis vectors and linear independence",
-            "NumPy vector operations",
+            "Vector spaces and their axioms",
+            "Python NumPy vector operations",
         ],
-        source_material="This is the first episode. Cover vectors from first principles. Include geometric intuition, mathematical notation, and Python code with NumPy.",
+        source_material=source,
         profile_summary="Second-year CS student, comfortable with Python, no linear algebra background beyond high school.",
         yesterday_topic="None — this is Episode 1",
         tomorrow_topic="Dot Products, Projections, and Cosine Similarity",

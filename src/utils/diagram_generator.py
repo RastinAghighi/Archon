@@ -23,7 +23,12 @@ def generate_diagram(diagram_json, output_dir, episode_num, diagram_index):
     description = diagram_json.get("description", "Diagram")
     components = diagram_json.get("components", None)
 
-    if diagram_type in ("plot", "line_plot"):
+    # If components is a list of strings (descriptions) rather than a data dict,
+    # fall back to placeholder with the description
+    if isinstance(components, list) and all(isinstance(c, str) for c in components):
+        detail = description + "\n\n" + "\n".join(f"• {c}" for c in components)
+        generate_placeholder(detail, save_path)
+    elif diagram_type in ("plot", "line_plot"):
         generate_line_plot(description, components, save_path)
     elif diagram_type == "bar_chart":
         generate_bar_chart(description, components, save_path)

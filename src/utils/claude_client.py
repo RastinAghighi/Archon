@@ -19,13 +19,22 @@ def call_claude(model, system_prompt, user_prompt, max_tokens=4096, extended_thi
                 "budget_tokens": thinking_budget,
             }
 
-        response = client.messages.create(**kwargs)
-
-        for block in response.content:
-            if block.type == "text":
-                return block.text
-
-        return None
+        if extended_thinking:
+            # Use streaming for extended thinking (required for long operations)
+            text_parts = []
+            with client.messages.stream(**kwargs) as stream:
+                for event in stream:
+                    if hasattr(event, 'type'):
+                        if event.type == 'content_block_delta':
+                            if hasattr(event.delta, 'text'):
+                                text_parts.append(event.delta.text)
+            return "".join(text_parts) if text_parts else None
+        else:
+            response = client.messages.create(**kwargs)
+            for block in response.content:
+                if block.type == "text":
+                    return block.text
+            return None
 
     except Exception as e:
         print(f"Error calling Claude: {e}")

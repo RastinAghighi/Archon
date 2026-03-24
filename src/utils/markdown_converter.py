@@ -1,7 +1,115 @@
 """Converts Markdown output from the document writer into HTML suitable for PDF rendering."""
 
 import re
+import base64
+import io
 import markdown
+
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+
+def _simplify_bmatrix(latex_expr):
+    """Convert \\begin{bmatrix}...\\end{bmatrix} to matplotlib-compatible notation."""
+    expr = latex_expr
+    # Replace bmatrix environments with bracket notation
+    def _bmatrix_to_brackets(m):
+        inner = m.group(1).strip()
+        # Split rows by \\ and cells by &
+        rows = [r.strip() for r in re.split(r'\\\\', inner) if r.strip()]
+        if len(rows) == 1:
+            # Single row — render as [a, b, c]
+            cells = [c.strip() for c in rows[0].split('&')]
+            return r'\left[' + r',\;'.join(cells) + r'\right]'
+        else:
+            # Multi-row — render as column vector [a; b; c]
+            formatted = []
+            for row in rows:
+                cells = [c.strip() for c in row.split('&')]
+                formatted.append(r',\;'.join(cells))
+            return r'\left[' + r';\;'.join(formatted) + r'\right]'
+
+    for env in ('bmatrix', 'pmatrix', 'vmatrix', 'matrix'):
+        expr = re.sub(
+            r'\\begin\{' + env + r'\}(.*?)\\end\{' + env + r'\}',
+            _bmatrix_to_brackets, expr, flags=re.DOTALL
+        )
+
+    # Replace other unsupported environments with plain text
+    expr = re.sub(r'\\begin\{(\w+)\}', '', expr)
+    expr = re.sub(r'\\end\{(\w+)\}', '', expr)
+    # Replace \text{...} with mathrm
+    expr = re.sub(r'\\text\{([^}]*)\}', r'\\mathrm{\1}', expr)
+
+    return expr
+
+
+def render_latex_to_base64(latex_expr, fontsize=14, display=False):
+    """Render a LaTeX expression to a base64-encoded PNG using matplotlib mathtext."""
+    def _try_render(expr):
+        fig = plt.figure(figsize=(0.01, 0.01))
+        fig.patch.set_alpha(0.0)
+        wrapped = f"${expr}$"
+        fig.text(0, 0, wrapped, fontsize=fontsize,
+                 ha="left", va="baseline",
+                 color="black", usetex=False)
+        buf = io.BytesIO()
+        fig.savefig(buf, format="png", dpi=150, transparent=True,
+                    bbox_inches="tight", pad_inches=0.05)
+        plt.close(fig)
+        buf.seek(0)
+        return base64.b64encode(buf.read()).decode("utf-8")
+
+    try:
+        return _try_render(latex_expr)
+    except Exception:
+        plt.close("all")
+
+    # Retry with simplified expression (convert bmatrix etc.)
+    try:
+        simplified = _simplify_bmatrix(latex_expr)
+        if simplified != latex_expr:
+            return _try_render(simplified)
+    except Exception:
+        plt.close("all")
+
+    return None
+
+
+def replace_display_math(html):
+    """Find $$...$$ blocks and replace with rendered PNG images (centered)."""
+    def _replace(match):
+        latex = match.group(1).strip()
+        b64 = render_latex_to_base64(latex, fontsize=16, display=True)
+        if b64:
+            return (
+                f'<div style="text-align:center;margin:12px 0;">'
+                f'<img src="data:image/png;base64,{b64}" '
+                f'alt="{latex[:80]}" style="max-width:90%;height:auto;">'
+                f'</div>'
+            )
+        return match.group(0)
+
+    return re.sub(r'\$\$(.+?)\$\$', _replace, html, flags=re.DOTALL)
+
+
+def replace_inline_math(html):
+    """Find $...$ (not $$) and replace with rendered PNG images (inline)."""
+    def _replace(match):
+        latex = match.group(1).strip()
+        if not latex:
+            return match.group(0)
+        b64 = render_latex_to_base64(latex, fontsize=13, display=False)
+        if b64:
+            return (
+                f'<img src="data:image/png;base64,{b64}" '
+                f'alt="{latex[:80]}" '
+                f'style="vertical-align:middle;height:1.3em;">'
+            )
+        return match.group(0)
+
+    return re.sub(r'(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)', _replace, html)
 
 
 def convert_markdown_to_html(markdown_text: str) -> str:
@@ -28,29 +136,11 @@ def convert_markdown_to_html(markdown_text: str) -> str:
         extension_configs=extension_configs,
     )
 
-    # Post-process: wrap display math $$...$$ in <div class="math-block">
-    html = re.sub(
-        r'\$\$(.+?)\$\$',
-        r'<div class="math-block">\1</div>',
-        html,
-        flags=re.DOTALL,
-    )
+    # Render display math $$...$$ as PNG images (must be done before inline math)
+    html = replace_display_math(html)
 
-    # Post-process: wrap inline math $...$ in <span class="math-inline">
-    # Avoid matching already-processed math-block divs
-    html = re.sub(
-        r'(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)',
-        r'<span class="math-inline">\1</span>',
-        html,
-    )
-
-    # Post-process: wrap DIAGRAM: {...} lines in <div class="diagram">
-    html = re.sub(
-        r'DIAGRAM:\s*(\{.*?\})',
-        r'<div class="diagram">\1</div>',
-        html,
-        flags=re.DOTALL,
-    )
+    # Render inline math $...$ as PNG images
+    html = replace_inline_math(html)
 
     return html
 
