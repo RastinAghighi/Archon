@@ -1,0 +1,44 @@
+{
+  "completion_percentage": 0.0,
+  "streak_days": 0,
+  "category_breakdown": {
+    "linear_algebra": {
+      "total_topics": 10,
+      "mastered": 0,
+      "in_progress": 0,
+      "not_started": 10,
+      "avg_confidence": 0.0
+    },
+    "calculus": {
+      "total_topics": 8,
+      "mastered": 0,
+      "in_progress": 0,
+      "not_started": 8,
+      "avg_confidence": 0.0
+    },
+    "probability": {
+      "total_topics": 10,
+      "mastered": 0,
+      "in_progress": 0,
+      "not_started": 10,
+      "avg_confidence": 0.0
+    },
+    "math_integration": {
+      "total_topics": 2,
+      "mastered": 0,
+      "in_progress": 0,
+      "not_started": 2,
+      "avg_confidence": 0.0
+    }
+  },
+  "score_trend": [
+    {
+      "episode_num": 1,
+      "score": 100.0
+    }
+  ],
+  "phase_progress": {
+    "phase_1": 0.0
+  },
+  "last_updated": "2026-03-24"
+}

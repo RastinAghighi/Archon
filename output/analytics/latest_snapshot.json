@@ -1,0 +1,20 @@
+{
+  "date": "2026-03-24",
+  "episodes_completed": 0,
+  "total_episodes": 165,
+  "completion_percentage": 0.0,
+  "streak_days": 0,
+  "avg_score_today": 0.0,
+  "avg_score_overall": 100.0,
+  "knowledge_coverage": 0.0,
+  "category_scores": {
+    "linear_algebra": 0.0,
+    "calculus": 0.0,
+    "probability": 0.0,
+    "math_integration": 0.0
+  },
+  "phase_progress": {
+    "phase_1": 0.0
+  },
+  "total_study_hours": 0.0
+}
