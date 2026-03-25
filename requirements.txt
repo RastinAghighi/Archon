@@ -1,3 +1,10 @@
-anthropic          # Claude API SDK
-pyyaml             # Config file parsing
-python-dotenv      # Environment variable loading
+anthropic
+pyyaml
+python-dotenv
+markdown
+Pygments
+matplotlib
+seaborn
+numpy
+weasyprint
+jinja2

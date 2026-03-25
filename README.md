@@ -1,21 +1,35 @@
 # Archon
 
-A personalized AI learning platform that generates daily study documents, assessments, and progress analytics for mastering AI/ML from scratch.
-
-## Overview
-
-Archon is an AI-powered tutor that builds a custom curriculum tailored to your background and learning pace. Each day, it generates a structured study episode — a comprehensive document covering one topic in your AI/ML journey — using Claude's extended thinking capabilities for depth and accuracy. Archon tracks your progress through a knowledge graph, adapting future content based on what you've already mastered and where you need reinforcement.
+A personalized AI learning platform that generates daily study documents with visual PDFs, assessments, and progress analytics for mastering AI/ML from scratch to research-paper fluency.
 
 ## Current Status
 
-**Week 1** — Core pipeline proof of concept
+**Week 2** -- Full local pipeline with PDF rendering and assessments
+
+## Features
+
+- **Claude Opus-powered study documents** -- Extended thinking generates 25-30 page episodes with LaTeX formulas, code examples, and worked problems
+- **Professional PDF rendering** -- WeasyPrint pipeline with syntax-highlighted code blocks, rendered LaTeX, and matplotlib diagrams
+- **Daily assessment quizzes** -- Claude Haiku generates topic-specific quizzes; scores feed back into the knowledge graph
+- **Knowledge graph** -- 165 topics across 7 phases, from linear algebra fundamentals to research-paper reproduction
+- **Confidence scoring** -- Real assessment performance drives per-topic confidence values
+- **Spaced repetition** -- Time-decay on confidence scores surfaces topics that need review
+- **Analytics engine** -- Daily progress snapshots with public dashboard data export
+- **SQLite persistence** -- All episode metadata, assessment results, and analytics stored locally
 
 ## Tech Stack
 
-- **Python** — Core application language
-- **Claude API** — Opus (extended thinking for document generation), Sonnet (analysis), Haiku (lightweight tasks)
-- **SQLite** — Local data persistence and progress tracking
-- **Deployment** — GCP / AWS / Azure (planned)
+| Component | Technology |
+|-----------|------------|
+| Core language | Python |
+| Document generation | Claude API (Opus with extended thinking) |
+| Assessments | Claude API (Haiku) |
+| PDF rendering | WeasyPrint + Jinja2 templates |
+| Diagrams | matplotlib + seaborn |
+| Math rendering | LaTeX via Markdown extensions |
+| Code highlighting | Pygments |
+| Database | SQLite |
+| Config | YAML + python-dotenv |
 
 ## Quick Start
 
@@ -25,19 +39,19 @@ git clone https://github.com/RastinAghighi/Archon.git
 cd Archon
 
 # Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate        # Linux/macOS
+py -m venv venv
 venv\Scripts\activate           # Windows
+# source venv/bin/activate      # Linux/macOS
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Set your API key
-export ANTHROPIC_API_KEY="your-key-here"        # Linux/macOS
 set ANTHROPIC_API_KEY=your-key-here             # Windows
+# export ANTHROPIC_API_KEY="your-key-here"      # Linux/macOS
 
-# Generate your first episode
-python generate_episode.py
+# Generate your first episode (document + PDF + assessment + analytics)
+py generate_episode.py
 ```
 
 ## Project Structure
@@ -45,18 +59,33 @@ python generate_episode.py
 ```
 Archon/
 ├── config/
-│   └── settings.yaml           # Model and generation settings
+│   └── settings.yaml              # Model and generation settings
 ├── data/
-│   └── profile.json            # Learner profile and knowledge graph
+│   ├── profile.json               # Learner profile and knowledge graph (165 topics)
+│   └── archon.db                  # SQLite database
 ├── output/
-│   └── markdown/               # Generated study episodes
+│   ├── markdown/                  # Generated study episodes (.md)
+│   ├── pdfs/                      # Rendered PDF documents
+│   │   └── diagrams/             # Generated matplotlib diagrams
+│   ├── assessments/               # Quiz results (.json)
+│   └── analytics/                 # Daily snapshots and public dashboard data
 ├── src/
 │   ├── __init__.py
-│   ├── document_writer.py      # Episode generation with Opus extended thinking
+│   ├── document_writer.py         # Episode generation with Opus extended thinking
+│   ├── pdf_renderer.py            # WeasyPrint PDF pipeline
+│   ├── assessment_generator.py    # Quiz generation with Haiku
+│   ├── analytics_engine.py        # Progress snapshots and dashboard export
+│   ├── profile_manager.py         # Confidence scoring and spaced repetition
 │   └── utils/
 │       ├── __init__.py
-│       └── claude_client.py    # Claude API client (Opus/Sonnet/Haiku)
-├── generate_episode.py         # Main entry point
+│       ├── claude_client.py       # Claude API client (Opus/Sonnet/Haiku)
+│       ├── database.py            # SQLite schema and queries
+│       ├── markdown_converter.py  # Markdown-to-HTML with LaTeX and code blocks
+│       └── diagram_generator.py   # matplotlib/seaborn chart generation
+├── templates/
+│   ├── episode_template.html      # Jinja2 PDF template
+│   └── episode_style.css          # PDF stylesheet
+├── generate_episode.py            # Main entry point — runs full pipeline
 ├── requirements.txt
 ├── LICENSE
 └── .gitignore
@@ -64,16 +93,26 @@ Archon/
 
 ## Roadmap
 
-| Week | Milestone |
-|------|-----------|
-| 1 | Core pipeline — document generation with Claude Opus extended thinking |
-| 2 | Assessment engine — quizzes, problem sets, and answer evaluation |
-| 3 | Knowledge graph — adaptive topic sequencing and spaced repetition |
-| 4 | Progress analytics — dashboards and performance tracking |
-| 5 | Multi-format output — PDF export, interactive notebooks |
-| 6 | Voice and multimedia — audio summaries, diagram generation |
-| 7 | Cloud deployment — API service with user authentication |
-| 8 | Polish and launch — testing, documentation, and public release |
+| Week | Milestone | Status |
+|------|-----------|--------|
+| 1 | Core pipeline -- document generation with Claude Opus extended thinking | Done |
+| 1 | PDF rendering with LaTeX, code highlighting, and diagrams | Done |
+| 2 | Assessment engine -- daily quizzes generated by Claude Haiku | Done |
+| 2 | Analytics engine -- daily snapshots and public dashboard data | Done |
+| 2 | Profile manager -- confidence scoring and spaced repetition | Done |
+| 3 | Cloud deployment -- GCP Cloud Run API service | Planned |
+| 4 | AWS integration -- S3 storage and Lambda functions | Planned |
+| 5 | Azure integration -- Cosmos DB and Functions | Planned |
+| 6 | React frontend -- progress dashboard and episode viewer | Planned |
+| 7 | Public recruiter dashboard -- read-only progress showcase | Planned |
+| 8 | ElevenReader integration -- audio summaries of episodes | Planned |
+
+## Planned Architecture
+
+- **Three-cloud deployment** -- GCP (primary API), AWS (storage/compute), Azure (database/serverless)
+- **React frontend** -- Interactive dashboard for viewing episodes, assessments, and progress
+- **Public recruiter dashboard** -- Read-only view showcasing learning progress and completed topics
+- **ElevenReader integration** -- AI-generated audio narration of study episodes
 
 ## License
 
