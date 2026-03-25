@@ -1,0 +1,107 @@
+{
+  "questions": [
+    {
+      "question": "When multiplying two matrices A (dimensions m×n) and B (dimensions n×p), what are the dimensions of the resulting matrix?",
+      "type": "multiple_choice",
+      "options": [
+        "A) m×p",
+        "B) n×n",
+        "C) m×n",
+        "D) n×p"
+      ],
+      "correct_answer": "A",
+      "explanation": "Matrix multiplication requires the number of columns in the first matrix (n) to equal the number of rows in the second matrix (n). The result has dimensions equal to the number of rows from the first matrix (m) and the number of columns from the second matrix (p), giving m×p.",
+      "difficulty": "easy",
+      "topic_tags": [
+        "matrices",
+        "matrix_multiplication",
+        "linear_algebra"
+      ]
+    },
+    {
+      "question": "In a neural network layer, why is matrix multiplication preferred over computing each output independently?",
+      "type": "multiple_choice",
+      "options": [
+        "A) It requires fewer mathematical operations",
+        "B) It enables batch processing, GPU acceleration, and efficient composition of transformations",
+        "C) It automatically applies activation functions",
+        "D) It eliminates the need for bias terms"
+      ],
+      "correct_answer": "B",
+      "explanation": "Matrix multiplication is fundamental to neural networks because it allows processing multiple samples simultaneously (batch processing), can be optimized on GPUs, and makes it easy to chain multiple transformations together. Computing outputs independently would be inefficient and prevent hardware optimization.",
+      "difficulty": "medium",
+      "topic_tags": [
+        "neural_networks",
+        "matrix_multiplication",
+        "AI_ML_applications"
+      ]
+    },
+    {
+      "question": "If you have a weight matrix W (2×3) and an input vector x (3×1), what is the mathematical operation being performed at each element of the output?",
+      "type": "multiple_choice",
+      "options": [
+        "A) Element-wise multiplication of corresponding entries",
+        "B) A dot product between a row of W and the input vector x",
+        "C) A cross product operation",
+        "D) A summation of all elements in both matrices"
+      ],
+      "correct_answer": "B",
+      "explanation": "Each element in the output matrix is computed as the dot product between a row of the weight matrix and the entire input vector. For output element i, you compute the dot product between row i of W and vector x, which sums the products of corresponding elements—exactly what happens in a neural network neuron.",
+      "difficulty": "medium",
+      "topic_tags": [
+        "matrix_multiplication",
+        "dot_products",
+        "neural_networks"
+      ]
+    },
+    {
+      "question": "Explain how matrix multiplication relates to the concept of linear transformations in the context of machine learning. Why is this relationship important?",
+      "type": "conceptual",
+      "correct_answer": "Matrix multiplication represents linear transformations by mapping input vectors to output vectors through weighted combinations. Each row of the weight matrix defines how to combine all input features to produce one output. This is important in ML because neural network layers are composed of these linear transformations (plus nonlinear activations), allowing complex decision boundaries to be built from simple operations. The ability to chain matrices together means we can compose multiple transformations efficiently.",
+      "explanation": "This tests whether students understand that matrices aren't just computational tools but represent fundamental mathematical operations. The relationship between matrices and linear transformations is crucial for understanding how neural networks actually work—they're composing multiple linear transformations.",
+      "difficulty": "hard",
+      "topic_tags": [
+        "linear_transformations",
+        "matrix_multiplication",
+        "theoretical_foundations"
+      ]
+    },
+    {
+      "question": "A dataset has 1000 samples, each with 256 features. How would you represent this as a matrix, and what would be the dimensions?",
+      "type": "short_answer",
+      "correct_answer": "The dataset would be represented as a 1000×256 matrix, where each row represents one sample and each column represents one feature.",
+      "explanation": "In machine learning, data matrices follow the convention of samples-as-rows and features-as-columns. This structure is standard across scikit-learn, TensorFlow, PyTorch, and other frameworks. When multiplying this data matrix by a weight matrix, each row (sample) gets independently transformed.",
+      "difficulty": "easy",
+      "topic_tags": [
+        "matrices",
+        "data_representation",
+        "data_structures"
+      ]
+    },
+    {
+      "question": "Given that matrix multiplication is not commutative (A×B ≠ B×A), explain why this matters for the order of operations when composing neural network layers.",
+      "type": "short_answer",
+      "correct_answer": "The order of matrix multiplication determines the sequence of transformations applied to the input. If you have layers with weight matrices W1 and W2, the output is either W2(W1·x) or W1(W2·x), which produce different results. This means the order of layers in a neural network is critical—changing the order changes the network's behavior and output. Non-commutativity reflects that transformations are directional and sequencing matters.",
+      "explanation": "This question tests understanding of how matrix properties directly impact neural network architecture. It connects linear algebra theory to practical ML implementation—the order of layers isn't arbitrary; it's mathematically significant.",
+      "difficulty": "hard",
+      "topic_tags": [
+        "matrix_multiplication",
+        "neural_networks",
+        "non_commutativity"
+      ]
+    },
+    {
+      "question": "Write a function that takes a weight matrix W (2×3) and a batch of 4 input samples X (4×3) and returns the output of a neural network layer without bias. Use NumPy or plain Python.",
+      "type": "code_challenge",
+      "correct_answer": "```python\nimport numpy as np\n\ndef neural_layer(W, X):\n    # W: (2, 3) weight matrix\n    # X: (4, 3) batch of 4 samples with 3 features each\n    # Output: (4, 2) matrix where each row is an output\n    return X @ W.T  # or np.dot(X, W.T)\n```",
+      "explanation": "The key insight is that to compute outputs for multiple samples at once, you multiply the batch matrix X (4×3) by the transpose of W. This gives (4×3) × (3×2) = (4×2), where each row contains the outputs for one sample. The transpose is needed because W is stored as (outputs×inputs) but we multiply by (samples×inputs). This demonstrates efficient batch processing—a core reason matrix multiplication is fundamental to ML.",
+      "difficulty": "hard",
+      "topic_tags": [
+        "matrix_multiplication",
+        "batch_processing",
+        "neural_networks",
+        "code"
+      ]
+    }
+  ]
+}

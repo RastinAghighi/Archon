@@ -1,0 +1,107 @@
+{
+  "questions": [
+    {
+      "question": "In the context of machine learning, why is it important to understand vectors as more than just 'lists of numbers'?",
+      "type": "conceptual",
+      "correct_answer": "Vectors have geometric meaning and represent multi-dimensional relationships in data. Understanding their geometric properties helps us comprehend transformations in neural networks, embeddings, and dimensionality reduction. Vectors aren't just containers for data—they're mathematical objects with operations (addition, scaling, dot products) that directly correspond to ML operations like parameter updates in gradient descent or similarity measures in embeddings.",
+      "explanation": "This question tests whether the learner can connect the foundational concept of vectors to real ML applications. A strong answer demonstrates understanding that vectors have both algebraic (numerical) and geometric (spatial) interpretations, and that this dual nature is why they're so powerful in machine learning.",
+      "difficulty": "medium",
+      "topic_tags": [
+        "vectors",
+        "geometric_intuition",
+        "ml_applications"
+      ]
+    },
+    {
+      "question": "Which of the following is the best example of a scalar in a machine learning context?",
+      "type": "multiple_choice",
+      "options": [
+        "A) A neural network's learning rate parameter (0.001)",
+        "B) The pixel intensity values of a 28×28 grayscale image",
+        "C) The word embedding for the word 'cat' in NLP",
+        "D) The gradient vector computed during backpropagation"
+      ],
+      "correct_answer": "A",
+      "explanation": "A scalar is a single real number. The learning rate (0.001) is a single numerical value that controls the magnitude of parameter updates. Option B is a vector (784 components), C is a vector (embedding dimension), and D is explicitly a vector. Only the learning rate is a scalar.",
+      "difficulty": "easy",
+      "topic_tags": [
+        "scalars",
+        "ml_terminology"
+      ]
+    },
+    {
+      "question": "How would you explain linear independence of vectors to someone who's never studied linear algebra?",
+      "type": "short_answer",
+      "correct_answer": "Linear independence means that no vector in a set can be created by multiplying and adding the other vectors together. In geometric terms, independent vectors point in different 'directions' and don't lie on the same line (in 2D) or plane (in 3D). For ML: independent feature vectors mean each feature provides unique information that can't be derived from other features.",
+      "explanation": "This tests conceptual understanding rather than memorization. A good answer should include: (1) a mathematical description of the definition, (2) geometric intuition, and (3) connection to ML relevance. The answer demonstrates that the learner understands why independence matters—redundant features hurt model efficiency.",
+      "difficulty": "medium",
+      "topic_tags": [
+        "linear_independence",
+        "vector_spaces",
+        "feature_engineering"
+      ]
+    },
+    {
+      "question": "What is the primary reason vector spaces are formally defined with axioms (closure, associativity, identity elements, etc.) rather than just saying 'collections of vectors'?",
+      "type": "multiple_choice",
+      "options": [
+        "A) To make mathematics more complicated and exclusive to experts",
+        "B) To ensure that operations on vectors behave predictably and can be reliably used in computations and proofs",
+        "C) Because vectors must always be finite-dimensional",
+        "D) To distinguish vector spaces from matrices"
+      ],
+      "correct_answer": "B",
+      "explanation": "Formal axioms ensure mathematical rigor and predictability. When you know a set forms a vector space, you can guarantee that vector addition and scalar multiplication will behave as expected—this is crucial in ML where we rely on these operations for optimization algorithms. The axioms don't make math complicated; they ensure that the structure is well-defined and trustworthy.",
+      "difficulty": "hard",
+      "topic_tags": [
+        "vector_spaces",
+        "mathematical_rigor",
+        "axioms"
+      ]
+    },
+    {
+      "question": "A grayscale image is 256×256 pixels. If each pixel intensity is represented as a value from 0-255, how many dimensions does the corresponding vector have, and why is this dimensionality relevant to ML?",
+      "type": "short_answer",
+      "correct_answer": "65,536 dimensions (256 × 256 = 65,536). This high dimensionality is relevant because: (1) curse of dimensionality—models may overfit or require more training data, (2) computational cost increases with dimensions, and (3) techniques like dimensionality reduction (PCA, autoencoders) are used to represent the image in a lower-dimensional space while preserving important information.",
+      "explanation": "This question bridges foundational vector concepts with practical ML concerns. It tests both the ability to calculate vector dimensionality and understand why that dimensionality matters for real-world applications. Students should recognize that high-dimensional data is common in ML and motivates many techniques.",
+      "difficulty": "medium",
+      "topic_tags": [
+        "vectors",
+        "dimensionality",
+        "curse_of_dimensionality",
+        "ml_applications"
+      ]
+    },
+    {
+      "question": "Which of the following operations results in a scalar (a single number)?",
+      "type": "multiple_choice",
+      "options": [
+        "A) Adding two vectors of the same dimension",
+        "B) Multiplying a vector by a scalar",
+        "C) Computing the dot product of two vectors",
+        "D) All of the above produce scalars"
+      ],
+      "correct_answer": "C",
+      "explanation": "The dot product of two vectors produces a single scalar value. Vector addition produces a vector, and scalar multiplication of a vector produces a vector. The dot product is fundamental in ML—it's used to compute similarity between vectors, in matrix multiplication, and in neural network computations.",
+      "difficulty": "easy",
+      "topic_tags": [
+        "vector_operations",
+        "dot_product",
+        "scalars"
+      ]
+    },
+    {
+      "question": "Write Python code to check whether two vectors are linearly independent. Your function should take two vectors (as lists or numpy arrays) and return True if independent, False if dependent. Assume the vectors are 2D for simplicity.",
+      "type": "code_challenge",
+      "correct_answer": "```python\nimport numpy as np\n\ndef are_linearly_independent(v1, v2):\n    v1 = np.array(v1)\n    v2 = np.array(v2)\n    # Vectors are dependent if one is a scalar multiple of the other\n    # Check if cross product (determinant) is non-zero\n    determinant = v1[0] * v2[1] - v1[1] * v2[0]\n    return abs(determinant) > 1e-10\n\n# Example usage:\nprint(are_linearly_independent([1, 0], [0, 1]))  # True (independent)\nprint(are_linearly_independent([1, 2], [2, 4]))   # False (dependent)\n```",
+      "explanation": "This challenge tests practical understanding of linear independence. For 2D vectors, the cross product (determinant of the 2×2 matrix) is non-zero when vectors are independent. This directly maps to the mathematical definition: vectors are dependent if one is a scalar multiple of the other. The small epsilon (1e-10) handles floating-point precision issues. This concept extends to higher dimensions using rank calculations, which are fundamental in ML for determining feature importance and data redundancy.",
+      "difficulty": "hard",
+      "topic_tags": [
+        "linear_independence",
+        "python",
+        "numpy",
+        "vector_operations"
+      ]
+    }
+  ]
+}

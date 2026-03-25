@@ -1,13 +1,13 @@
 {
-  "completion_percentage": 0.0,
+  "completion_percentage": 1.8,
   "streak_days": 0,
   "category_breakdown": {
     "linear_algebra": {
       "total_topics": 10,
       "mastered": 0,
-      "in_progress": 0,
-      "not_started": 10,
-      "avg_confidence": 0.0
+      "in_progress": 3,
+      "not_started": 7,
+      "avg_confidence": 0.12
     },
     "calculus": {
       "total_topics": 8,
@@ -38,7 +38,7 @@
     }
   ],
   "phase_progress": {
-    "phase_1": 0.0
+    "phase_1": 3.3
   },
   "last_updated": "2026-03-24"
 }
