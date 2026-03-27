@@ -6,5 +6,10 @@ Pygments
 matplotlib
 seaborn
 numpy
-weasyprint
+xhtml2pdf
 jinja2
+trafilatura
+beautifulsoup4
+requests
+arxiv
+PyMuPDF
