@@ -1,0 +1,194 @@
+{
+  "sources": [
+    {
+      "id": "arxiv",
+      "name": "arXiv",
+      "url": "https://arxiv.org",
+      "type": "api",
+      "fetcher": "arxiv_fetcher",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "semantic_scholar",
+      "name": "Semantic Scholar",
+      "url": "https://api.semanticscholar.org",
+      "type": "api",
+      "fetcher": "semantic_scholar_fetcher",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "papers_with_code",
+      "name": "Papers With Code",
+      "url": "https://paperswithcode.com",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "anthropic_blog",
+      "name": "Anthropic Blog",
+      "url": "https://www.anthropic.com/news",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["nlp", "safety", "agents"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "deepmind_blog",
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/blog",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "openai_blog",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "meta_ai_blog",
+      "name": "Meta AI Blog",
+      "url": "https://ai.meta.com/blog",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "huggingface_blog",
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "lilian_weng",
+      "name": "Lilian Weng's Blog",
+      "url": "https://lilianweng.github.io",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["deep_learning", "transformers", "rl"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "jay_alammar",
+      "name": "Jay Alammar's Blog",
+      "url": "https://jalammar.github.io",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["transformers", "nlp"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "distill_pub",
+      "name": "Distill.pub",
+      "url": "https://distill.pub",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["deep_learning", "visualization"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "stanford_cs229",
+      "name": "Stanford CS229 Notes",
+      "url": "https://cs229.stanford.edu",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["foundations", "classical_ml"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "stanford_cs231n",
+      "name": "Stanford CS231n Notes",
+      "url": "https://cs231n.stanford.edu",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["deep_learning", "cnns"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "karpathy_blog",
+      "name": "Andrej Karpathy's Blog",
+      "url": "https://karpathy.github.io",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["deep_learning", "nlp"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "hacker_news",
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com",
+      "type": "api",
+      "fetcher": "hn_fetcher",
+      "categories": ["trending", "all"],
+      "quality": "mixed",
+      "enabled": true
+    },
+    {
+      "id": "github_trending",
+      "name": "GitHub Trending",
+      "url": "https://github.com/trending",
+      "type": "api",
+      "fetcher": "github_fetcher",
+      "categories": ["trending", "all"],
+      "quality": "mixed",
+      "enabled": true
+    },
+    {
+      "id": "hf_daily_papers",
+      "name": "Hugging Face Daily Papers",
+      "url": "https://huggingface.co/papers",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["trending", "all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "mit_tech_review",
+      "name": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    },
+    {
+      "id": "the_gradient",
+      "name": "The Gradient",
+      "url": "https://thegradient.pub",
+      "type": "web",
+      "fetcher": "generic",
+      "categories": ["all"],
+      "quality": "high",
+      "enabled": true
+    }
+  ]
+}
